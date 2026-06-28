@@ -89,3 +89,8 @@ export function getDistractors(word: Word, count: number, allWords: Word[]): Wor
 export function getPracticeType(id: string): 'fill' | 'choice' {
   return parseInt(id, 10) % 3 === 0 ? 'fill' : 'choice'
 }
+
+// Returns all words with mastered: false — safe to call on the server (no localStorage read)
+export function getWordsBase(): Word[] {
+  return (rawWords as Word[]).map(w => ({ ...w, mastered: false }))
+}

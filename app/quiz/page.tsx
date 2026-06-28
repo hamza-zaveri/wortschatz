@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { getMasteredWords, getDistractors, getAllWords, type Word } from '@/lib/vocab'
+import { getMasteredWords, getDistractors, getAllWords, getWordsBase, type Word } from '@/lib/vocab'
 import QuizCard from '@/components/QuizCard'
 
 function shuffle<T>(arr: T[]): T[] {
@@ -22,8 +22,15 @@ interface QuizResult {
 
 export default function QuizPage() {
   const router = useRouter()
-  const [mastered] = useState<Word[]>(getMasteredWords)
-  const [allWords] = useState<Word[]>(getAllWords)
+  const [mastered, setMastered] = useState<Word[]>([])
+  const [allWords, setAllWords] = useState<Word[]>(getWordsBase)
+  const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    setMastered(getMasteredWords())
+    setAllWords(getAllWords())
+    setHydrated(true)
+  }, [])
 
   const questions: Word[] = useMemo(
     () => shuffle(mastered).slice(0, Math.min(10, mastered.length)),
@@ -56,7 +63,7 @@ export default function QuizPage() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [router])
 
-  if (mastered.length === 0) {
+  if (hydrated && mastered.length === 0) {
     return (
       <main className="max-w-content mx-auto px-6 py-12">
         <p className="text-muted text-[16px]">
@@ -69,6 +76,8 @@ export default function QuizPage() {
       </main>
     )
   }
+
+  if (!hydrated) return null
 
   const handleResult = (correct: boolean) => {
     setResults(prev => [...prev, { word: questions[current], correct }])

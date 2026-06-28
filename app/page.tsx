@@ -1,13 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { getAllWords, getCategories, type Word } from '@/lib/vocab'
+import { getAllWords, getWordsBase, getCategories, type Word } from '@/lib/vocab'
 import ProgressBar from '@/components/ProgressBar'
 
 export default function Home() {
-  const [words] = useState<Word[]>(getAllWords)
+  const [words, setWords] = useState<Word[]>(getWordsBase)
   const [activeCategory, setActiveCategory] = useState<string>('all')
+
+  useEffect(() => {
+    setWords(getAllWords())
+  }, [])
 
   const categories = ['all', ...getCategories()]
   const filtered =
