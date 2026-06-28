@@ -11,3 +11,9 @@ const localStorageMock = (() => {
 })()
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+
+class MockSpeechSynthesisUtterance {
+  text: string; lang = ''; rate = 1; pitch = 1; volume = 1
+  constructor(text: string) { this.text = text }
+}
+Object.defineProperty(window, 'SpeechSynthesisUtterance', { value: MockSpeechSynthesisUtterance, writable: true })
