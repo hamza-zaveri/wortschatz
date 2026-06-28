@@ -18,10 +18,26 @@ export default function Home() {
 
   return (
     <main className="max-w-content mx-auto px-6 py-12">
-      <h1 className="font-mono text-[32px] font-light tracking-tight text-primary">
-        Wortschatz
-      </h1>
-      <p className="mt-1 text-[13px] text-muted tracking-wide">A1 German vocabulary</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="font-mono text-[32px] font-light tracking-tight text-primary">
+            Wortschatz
+          </h1>
+          <p className="mt-1 text-[13px] text-muted tracking-wide">A1 German vocabulary</p>
+        </div>
+        <Link
+          href="/quiz"
+          aria-disabled={!hasMastered}
+          onClick={e => { if (!hasMastered) e.preventDefault() }}
+          className={`mt-1 min-h-[44px] px-5 flex items-center text-[13px] font-medium uppercase tracking-[0.1em] border transition-colors duration-200 ${
+            hasMastered
+              ? 'border-primary text-primary hover:bg-highlight'
+              : 'border-border text-muted cursor-not-allowed'
+          }`}
+        >
+          Quiz
+        </Link>
+      </div>
 
       <div className="my-6 h-px bg-border" />
 
@@ -69,20 +85,6 @@ export default function Home() {
         ))}
       </ul>
 
-      <div className="mt-10 flex justify-end">
-        <Link
-          href="/quiz"
-          aria-disabled={!hasMastered}
-          onClick={e => { if (!hasMastered) e.preventDefault() }}
-          className={`px-6 py-3 text-[13px] font-medium uppercase tracking-[0.1em] border transition-colors duration-200 ${
-            hasMastered
-              ? 'border-primary text-primary hover:bg-highlight'
-              : 'border-border text-muted cursor-not-allowed'
-          }`}
-        >
-          Start Quiz
-        </Link>
-      </div>
     </main>
   )
 }

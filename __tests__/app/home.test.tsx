@@ -31,9 +31,9 @@ describe('Home page', () => {
     expect(filteredLinks).toBeLessThan(allLinks)
   })
 
-  it('Start Quiz button is disabled when nothing is mastered', () => {
+  it('Quiz button is disabled when nothing is mastered', () => {
     render(<Home />)
-    expect(screen.getByRole('link', { name: /start quiz/i })).toHaveAttribute('aria-disabled', 'true')
+    expect(screen.getByRole('link', { name: /quiz/i })).toHaveAttribute('aria-disabled', 'true')
   })
 
   it('shows mastery count', () => {

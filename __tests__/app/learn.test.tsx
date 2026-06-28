@@ -34,12 +34,10 @@ describe('Learn page', () => {
     expect(screen.getByRole('button', { name: /listen/i })).toBeInTheDocument()
   })
 
-  it('Next button is disabled until Listen is clicked in stage 2', () => {
+  it('Next button is always enabled in stage 2', () => {
     render(<LearnPage />)
     fireEvent.click(screen.getByRole('button', { name: /got it/i }))
     const nextBtn = screen.getByRole('button', { name: /next/i })
-    expect(nextBtn).toBeDisabled()
-    fireEvent.click(screen.getByRole('button', { name: /listen/i }))
     expect(nextBtn).not.toBeDisabled()
   })
 

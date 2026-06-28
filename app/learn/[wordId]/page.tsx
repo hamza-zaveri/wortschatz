@@ -134,8 +134,7 @@ export default function LearnPage() {
               <PronounceButton word={word.german} onPlayed={() => setHasListened(true)} />
               <button
                 onClick={advance}
-                disabled={!hasListened}
-                className="min-h-[44px] w-full border border-primary text-[13px] font-medium uppercase tracking-[0.1em] hover:bg-highlight transition-colors duration-200 disabled:border-border disabled:text-muted disabled:cursor-not-allowed"
+                className="min-h-[44px] w-full border border-primary text-[13px] font-medium uppercase tracking-[0.1em] hover:bg-highlight transition-colors duration-200"
               >
                 Next →
               </button>
@@ -170,16 +169,16 @@ export default function LearnPage() {
             <div className="space-y-6">
               {practiceType === 'fill' ? (
                 <>
-                  <p className="text-[16px] text-muted">
-                    {word.exampleSentence.replace(word.base, '______')}
+                  <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-muted">
+                    How do you say this in German?
                   </p>
-                  <p className="text-sm text-muted italic">{word.exampleTranslation}</p>
+                  <p className="text-[32px] font-light text-primary">{word.english}</p>
                   <input
                     type="text"
                     value={userInput}
                     onChange={e => setUserInput(e.target.value)}
                     onKeyDown={e => { if (e.key === 'Enter' && !outcome) handleCheck() }}
-                    placeholder="Type here..."
+                    placeholder="Type the German word..."
                     disabled={!!outcome}
                     className={`w-full min-h-[44px] px-4 border bg-transparent text-primary text-[16px] outline-none transition-colors duration-200 ${
                       outcome === 'correct' ? 'border-correct' : outcome === 'wrong' ? 'border-wrong' : 'border-border'
