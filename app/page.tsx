@@ -15,8 +15,9 @@ export default function Home() {
   }, [])
 
   const categories = ['all', ...getCategories()]
+  const unmastered = words.filter(w => !w.mastered)
   const filtered =
-    activeCategory === 'all' ? words : words.filter(w => w.category === activeCategory)
+    activeCategory === 'all' ? unmastered : unmastered.filter(w => w.category === activeCategory)
   const masteredWords = words.filter(w => w.mastered)
   const masteredCount = masteredWords.length
   const total = words.length
