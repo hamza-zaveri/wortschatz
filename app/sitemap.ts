@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import rawWords from '@/data/vocabulary.json'
 
-const BASE_URL = 'https://wortschatz-green.vercel.app'
+const BASE_URL = 'https://wortschatz-de.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const wordPages = (rawWords as { id: string }[]).map(word => ({

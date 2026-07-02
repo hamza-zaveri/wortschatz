@@ -3,7 +3,7 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 import type { Metadata } from 'next'
 
-const BASE_URL = 'https://wortschatz-green.vercel.app'
+const BASE_URL = 'https://wortschatz-de.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
