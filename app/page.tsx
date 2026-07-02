@@ -154,22 +154,6 @@ export default function Home() {
         ))}
       </ul>
 
-      <div className="mt-16 pt-8 border-t border-border">
-        <p className="text-[15px] text-primary font-light leading-relaxed mb-1">
-          Wortschatz is free, and always will be.
-        </p>
-        <p className="text-[13px] text-muted mb-5">
-          If it&apos;s helped you pick up a few words, a coffee keeps it running — I&apos;d be really grateful.
-        </p>
-        <a
-          href="https://buymeacoffee.com/coolant"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 min-h-[44px] px-6 border border-border text-[13px] font-medium uppercase tracking-[0.1em] text-muted hover:border-primary hover:text-primary transition-colors duration-200"
-        >
-          ☕ Buy me a coffee
-        </a>
-      </div>
 
     </main>
   )
